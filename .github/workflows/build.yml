@@ -47,7 +47,12 @@ jobs:
       - name: Build geosite.dat
         run: |
           cd domain-list-custom
-          go run ./ --datapath=../data --datname=geosite.dat --outputpath=..
+          go run ./ \
+            --datapath=../data \
+            --datname=geosite.dat \
+            --outputpath=.. \
+            --exportlists=custom-proxy,custom-direct \
+            --togfwlist=custom-proxy
 
       - name: Convert to sing-box rule-set
         run: |
