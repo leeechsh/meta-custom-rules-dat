@@ -1,0 +1,100 @@
+name: Build custom rules
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 22 * * *"
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "data/**"
+      - ".github/workflows/build.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set variables
+        run: |
+          echo "BUILDTIME=$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')" >> "$GITHUB_ENV"
+
+      - name: Checkout current repo
+        uses: actions/checkout@v5
+
+      - name: Checkout domain-list compiler
+        uses: actions/checkout@v5
+        with:
+          repository: Loyalsoldier/domain-list-custom
+          path: domain-list-custom
+
+      - name: Checkout meta-rules-converter
+        uses: actions/checkout@v5
+        with:
+          repository: MetaCubeX/meta-rules-converter
+          path: converter
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Build geosite.dat
+        run: |
+          cd domain-list-custom
+          go run ./ --datapath=../data --outputname ../geosite.dat
+
+      - name: Convert to sing-box rule-set
+        run: |
+          mkdir -p sing-rule/geosite
+          cd converter
+          go run ./ geosite -f ../geosite.dat -o ../sing-rule/geosite -t sing-box
+
+      - name: Convert to meta rule-set
+        run: |
+          mkdir -p meta-rule/geosite
+          cd converter
+          go run ./ geosite -f ../geosite.dat -o ../meta-rule/geosite
+
+      - name: Publish geosite.dat to release branch
+        run: |
+          mkdir -p publish
+          cp geosite.dat publish/
+          cd publish
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b release
+          git add .
+          git commit -m "Release ${BUILDTIME}" || exit 0
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin release
+
+      - name: Publish sing-box artifacts to sing branch
+        run: |
+          cd sing-rule
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b sing
+          git add .
+          git commit -m "Release ${BUILDTIME}" || exit 0
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin sing
+
+      - name: Publish meta artifacts to meta branch
+        run: |
+          cd meta-rule
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b meta
+          git add .
+          git commit -m "Release ${BUILDTIME}" || exit 0
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin meta
