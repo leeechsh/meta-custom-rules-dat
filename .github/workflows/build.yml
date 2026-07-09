@@ -47,7 +47,7 @@ jobs:
       - name: Build geosite.dat
         run: |
           cd domain-list-custom
-          go run ./ --datapath=../data --outputname ../geosite.dat
+          go run ./ --datapath=../data --datname=geosite.dat --outputpath=..
 
       - name: Convert to sing-box rule-set
         run: |
