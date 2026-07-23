@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "tailfb64b.ts.net",
+        "api.elsevier.com",
+        "ieeexplore.ieee.org",
+        "dl.acm.org",
+        "pubs.acs.org",
+        "academic.oup.com",
+        "ncbi.nlm.nih.gov",
+        "pubmed.ncbi.nlm.nih.gov"
+      ],
+      "domain_suffix": [
+        "elsevier.com",
+        "patronums.top",
+        "wujigg.com",
+        "leee.space",
+        "cslee.cc",
+        "cc.cd",
+        "metaiot.group",
+        "acm.org",
+        "ieee.org",
+        "mzstatic.com",
+        "me.com",
+        "cnki.net",
+        "easyscholar.cc",
+        "akadns.net",
+        "aaplimg.com",
+        "64clouds.com",
+        "steampowered.com",
+        "sciencedirect.com",
+        "webofscience.com",
+        "webofknowledge.com",
+        "tailscale.com",
+        "clarivate.com",
+        "scopus.com",
+        "els-cdn.com",
+        "doi.org",
+        "nature.com",
+        "springer.com",
+        "dimensions.ai",
+        "wiley.com",
+        "researchgate.net",
+        "tandfonline.com",
+        "jstor.org",
+        "cell.com",
+        "elifesciences.org",
+        "royalsocietypublishing.org",
+        "cambridge.org",
+        "oup.com",
+        "sagepub.com",
+        "ingentaconnect.com",
+        "projecteuclid.org",
+        "zenodo.org",
+        "academic.microsoft.com"
+      ]
+    }
+  ]
+}
