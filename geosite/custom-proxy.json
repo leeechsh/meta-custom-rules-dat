@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "access-point.cloudmessaging.edge.microsoft.com",
+        "sydney.bing.com",
+        "browser.pipe.aria.microsoft.com",
+        "designer.microsoft.com",
+        "edge.microsoft.com",
+        "copilot.microsoft.com",
+        "edgeservices.bing.com",
+        "functional.events.data.microsoft.com",
+        "www.bingapis.com"
+      ],
+      "domain_suffix": [
+        "digicert.com",
+        "entrust.net",
+        "huggingface.co",
+        "discord.gg",
+        "hf.space",
+        "reddit.com",
+        "steamcommunity.com",
+        "linux.do",
+        "imgurl.org",
+        "wandb.ai",
+        "ocsp.verisign.net",
+        "blobstore.apple.com"
+      ]
+    }
+  ]
+}
