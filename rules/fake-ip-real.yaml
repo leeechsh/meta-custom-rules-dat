@@ -144,3 +144,5 @@ payload:
   - 'DOMAIN-SUFFIX,ipapi.is'
   - 'DOMAIN-SUFFIX,ipwho.is'
   - 'DOMAIN-SUFFIX,ipinfo.io'
+  - 'DOMAIN-SUFFIX,ieee.bbroot.com'
+  - 'DOMAIN-SUFFIX,nxtrace.org'
