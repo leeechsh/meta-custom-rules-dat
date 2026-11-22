@@ -10,6 +10,7 @@ on:
       - master
     paths:
       - "data/**"
+      - "rules/fake-ip-real.yaml"
       - ".github/workflows/build.yml"
 
 permissions:
@@ -94,6 +95,7 @@ jobs:
 
       - name: Publish meta artifacts to meta branch
         run: |
+          cp rules/fake-ip-real.yaml meta-rule/geosite/
           cd meta-rule
           git init
           git config user.name "github-actions[bot]"
