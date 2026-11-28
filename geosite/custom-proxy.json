@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain_suffix": [
+        "digicert.com",
+        "entrust.net",
+        "huggingface.co",
+        "discord.gg",
+        "hf.space",
+        "reddit.com",
+        "steamcommunity.com",
+        "linux.do",
+        "imgurl.org",
+        "wandb.ai",
+        "ocsp.verisign.net",
+        "blobstore.apple.com"
+      ]
+    }
+  ]
+}
